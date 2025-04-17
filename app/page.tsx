@@ -1,22 +1,36 @@
-import Link from '@/components/Link'
-import { Container, Typography } from '@mui/material'
+import { Link } from '@/components'
+import { Box, Container } from '@mui/material'
+
+const commonLinkStyles = {
+  color: 'white',
+  textDecorationColor: 'white',
+  display: 'block',
+}
 
 export default function HomePage() {
   return (
-    <Container component="main">
-      <Typography component="h1" variant="h3">
-        Time to get started!
-      </Typography>
+    <Box
+      sx={{
+        height: '100vh',
+        backgroundImage: 'url(/images/food-background2.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Content */}
+      {/* <Container>
+        <Link href="/meals" sx={commonLinkStyles}>
+          Meals
+        </Link>
 
-      <Typography>
-        <Link href="/meals">Meals</Link>
-      </Typography>
-      <Typography>
-        <Link href="/meals/share">Share Meal</Link>
-      </Typography>
-      <Typography>
-        <Link href="/community">Community</Link>
-      </Typography>
-    </Container>
+        <Link sx={commonLinkStyles} href="/meals/share">
+          Share Meal
+        </Link>
+
+        <Link sx={commonLinkStyles} href="/community">
+          Community
+        </Link>
+      </Container> */}
+    </Box>
   )
 }

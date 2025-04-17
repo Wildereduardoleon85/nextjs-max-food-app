@@ -5,7 +5,7 @@ const theme = createTheme({
   cssVariables: true,
   palette: {
     primary: {
-      main: '#fea82f',
+      main: '#ec3d08',
     },
     mode: 'dark',
     background: {
@@ -18,7 +18,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'var(--font-nunito-sans)',
+    fontFamily: 'var(--roboto)',
   },
 })
 

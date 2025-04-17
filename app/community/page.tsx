@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
 
-export default function ShareMealPage() {
-  return <Typography>Community Page</Typography>
+export default function CommunityPage() {
+  return <Typography>Community page</Typography>
 }

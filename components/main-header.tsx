@@ -1,49 +1,44 @@
-import { AppBar, Box, List, ListItem, Toolbar } from '@mui/material'
+import { AppBar, Box, List, ListItem, Toolbar, Typography } from '@mui/material'
+import { UnderLinedLink } from './Ui'
 import Image from 'next/image'
-import { UnderLinedLink } from './Ui/underlined-link'
+import { bebasFont } from '@/lib/theme'
 
 export function MainHeader() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="absolute"
-        sx={{
-          backgroundColor: 'transparent',
-          backgroundImage: 'none',
-          boxShadow: 'none',
-        }}
-      >
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box
+    <AppBar>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box display="flex" alignItems="center">
+          <Image
+            src="/assets/logo.png"
+            width={50}
+            height={50}
+            alt="a plate with food on it"
+          />
+          <Typography
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              mt: 2,
               textTransform: 'uppercase',
+              fontFamily: bebasFont,
+              fontSize: 32,
+              color: 'white',
+              ml: 2,
             }}
           >
-            <Image
-              src="/logo.png"
-              alt="grill with a cow on it"
-              width={70}
-              height={71}
-            />
-          </Box>
+            next level food
+          </Typography>
+        </Box>
 
-          <Box component="nav">
-            <List sx={{ display: 'flex', mt: 2 }}>
-              <ListItem>
-                <UnderLinedLink href="/meals">browse meals</UnderLinedLink>
-              </ListItem>
+        <Box component="nav">
+          <List sx={{ display: 'flex', mt: 2 }}>
+            <ListItem>
+              <UnderLinedLink href="/meals">browse meals</UnderLinedLink>
+            </ListItem>
 
-              <ListItem>
-                <UnderLinedLink href="/community">foodies</UnderLinedLink>
-              </ListItem>
-            </List>
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+            <ListItem>
+              <UnderLinedLink href="/community">foodies</UnderLinedLink>
+            </ListItem>
+          </List>
+        </Box>
+      </Toolbar>
+    </AppBar>
   )
 }

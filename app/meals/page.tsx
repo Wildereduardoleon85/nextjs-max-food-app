@@ -1,27 +1,35 @@
-import { Typography } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+'use client'
+
+import { Box, Button, Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
 
 export default function MealsPage() {
-  const router = useRouter()
+  const [number, setNumber] = useState<number>(0)
 
   useEffect(() => {
+    // Push fake state to prevent back navigation
+    history.pushState(null, '', window.location.href)
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const onPopState = (e: PopStateEvent) => {
-      // Prevent navigation on back swipe
-      router.push(router.pathname)
+    const handlePopState = (e: PopStateEvent) => {
+      // Prevent back by immediately pushing the same state again
+      history.pushState(null, '', window.location.href)
     }
 
-    window.addEventListener('popstate', onPopState)
+    window.addEventListener('popstate', handlePopState)
 
     return () => {
-      window.removeEventListener('popstate', onPopState)
+      window.removeEventListener('popstate', handlePopState)
     }
-  }, [router])
+  }, [])
 
   return (
-    <Typography variant="h1" mt={20}>
-      Meals Page
-    </Typography>
+    <>
+      <Typography variant="h1" mt={20}>
+        Meals Page
+      </Typography>
+      <Box>{number}</Box>
+      <Button onClick={() => setNumber(number + 1)}>Add</Button>
+    </>
   )
 }

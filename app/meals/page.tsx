@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './page.module.css'
-import { MealsGrid } from '@/components/meals'
+import { MealsGrid } from '@/components'
 import { getMeals } from '@/lib/meals'
 import type { MealWithId } from '@/types'
 import { Suspense } from 'react'

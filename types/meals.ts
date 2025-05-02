@@ -5,3 +5,7 @@ export type Meal = {
   summary: string
   creator: string
 }
+
+export type MealWithId = Meal & {
+  id: string
+}

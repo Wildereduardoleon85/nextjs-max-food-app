@@ -1,10 +1,6 @@
 import { MealItem } from './meal-item'
 import styles from './meals-grid.module.css'
-import type { Meal } from '@/types'
-
-type MealWithId = Meal & {
-  id: string
-}
+import type { MealWithId } from '@/types'
 
 type MealsGridProps = {
   meals: MealWithId[]

@@ -16,7 +16,7 @@ export function MealItem({
     <article className={styles.meal}>
       <header>
         <div className={styles.image}>
-          <Image src={image} alt={title} fill />
+          <Image src={image as string} alt={title} fill />
         </div>
         <div className={styles.headerText}>
           <h2>{title}</h2>

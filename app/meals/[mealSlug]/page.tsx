@@ -5,12 +5,10 @@ import { Meal } from '@/types'
 import { notFound } from 'next/navigation'
 
 type MealDetailsPageProps = {
-  params: { mealSlug: string }
+  params: Promise<{ mealSlug: string }>
 }
 
-export default async function MealDetailsPage({
-  params,
-}: Readonly<MealDetailsPageProps>) {
+async function getMealFromParams(params: MealDetailsPageProps['params']) {
   const { mealSlug } = await params
   const meal = getMeal(mealSlug) as Meal
 
@@ -18,11 +16,28 @@ export default async function MealDetailsPage({
     notFound()
   }
 
+  return meal
+}
+
+export async function generateMetadata({ params }: MealDetailsPageProps) {
+  const meal = await getMealFromParams(params)
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  }
+}
+
+export default async function MealDetailsPage({
+  params,
+}: Readonly<MealDetailsPageProps>) {
+  const meal = await getMealFromParams(params)
+
   return (
     <>
       <header className={styles.header}>
         <div className={styles.image}>
-          <Image src={meal.image} fill alt={meal.title} />
+          <Image src={meal.image as string} fill alt={meal.title} />
         </div>
         <div className={styles.headerText}>
           <h1>{meal.title}</h1>
@@ -36,7 +51,7 @@ export default async function MealDetailsPage({
         <p
           className={styles.instructions}
           dangerouslySetInnerHTML={{
-            __html: meal.instructions.replace(/\n/g, '<br />'),
+            __html: (meal.instructions as string).replace(/\n/g, '<br />'),
           }}
         ></p>
       </main>

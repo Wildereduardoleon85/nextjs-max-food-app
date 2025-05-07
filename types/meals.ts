@@ -4,8 +4,8 @@ export type Meal = {
   image: string | File
   summary: string
   creator: string
-  creator_email: string
-  instructions: string
+  creator_email?: string
+  instructions?: string
 }
 
 export type MealWithId = Meal & {

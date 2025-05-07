@@ -5,6 +5,11 @@ import { getMeals } from '@/lib/meals'
 import type { MealWithId } from '@/types'
 import { Suspense } from 'react'
 
+export const metadata = {
+  title: 'All Meals',
+  description: 'Browse delicious meals shared by our community.',
+}
+
 async function Meals() {
   const meals = (await getMeals()) as MealWithId[]
 

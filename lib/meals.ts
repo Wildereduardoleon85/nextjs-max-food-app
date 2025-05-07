@@ -18,14 +18,13 @@ export function getMeal(slug: string) {
 
 export async function saveMeal(meal: Meal) {
   meal.slug = slugify(meal.title, { lower: true })
-  meal.instructions = xss(meal.instructions)
-  const image = meal.image as File
+  meal.instructions = xss(meal.instructions as string)
 
-  const extension = image.name.split('.').pop()
+  const extension = (meal.image as File).name.split('.').pop()
   const fileName = `${meal.slug}.${extension}`
 
   const stream = fs.createWriteStream(`public/images/${fileName}`)
-  const bufferedImage = await image.arrayBuffer()
+  const bufferedImage = await (meal.image as File).arrayBuffer()
 
   stream.write(Buffer.from(bufferedImage), (error) => {
     if (error) {
